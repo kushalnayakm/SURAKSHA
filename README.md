@@ -209,9 +209,9 @@ Pattern:
 
 💰 Stops ₹1400+ crore subsidy fraud
 
-⚡ Detection in seconds
+⚡ Detects fraud in seconds
 
-📉 80% reduction in manual audits
+📉 80% reduction in manual audit
 
 🏁 One-Line Summary (For Judges)
 
