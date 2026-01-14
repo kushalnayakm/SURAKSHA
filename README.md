@@ -88,8 +88,7 @@ Python : 3.9 – 3.11
 RAM : 8 GB minimum
 OS : Windows / Linux / macOS
 
-yaml
-Copy code
+
 
 ---
 
