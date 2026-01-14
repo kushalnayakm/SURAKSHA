@@ -30,16 +30,17 @@ Are many records behaving together?
 
 👉 Fraud is detected as patterns, not isolated mistakes.
 
-📁 Project Structure
 SURAKSHA/
 │
-├── api_data_aadhar_enrolment/     # Raw Aadhaar enrollment CSV files (ignored in Git)
+├── api_data_aadhar_enrolment/
+│   └── *.csv                     # Raw Aadhaar enrollment data (ignored in Git)
+│
 ├── data/
 │   └── processed_real_aadhaar_data.csv
 │
 ├── blockchain/
-│   ├── __init__.py
-│   └── ledger.json
+│   ├── __init__.py               # Blockchain audit logic
+│   └── ledger.json               # Immutable audit ledger
 │
 ├── models/
 │   ├── aadhaar_knowledge_graph.pkl
@@ -52,11 +53,12 @@ SURAKSHA/
 │   ├── fraud_rings.csv
 │   └── performance_metrics.json
 │
-├── app.py                         # Frontend dashboard
-├── load_real_aadhaar_data.py      # Step 1: Data cleaning
-├── code2_graph_construction.py    # Step 2: Knowledge graph
-├── code3_rgcn_training.py         # Step 3: Model training
-├── code4_fraud_detection.py       # Step 4: Fraud detection
+├── app.py                        # Frontend dashboard
+├── load_real_aadhaar_data.py     # STEP 1: Data cleaning
+├── code2_graph_construction.py   # STEP 2: Knowledge graph
+├── code3_rgcn_training.py        # STEP 3: Model training
+├── code4_fraud_detection.py      # STEP 4: Fraud detection
+│
 ├── .gitignore
 └── README.md
 
