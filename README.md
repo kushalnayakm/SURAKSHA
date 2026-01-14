@@ -1,182 +1,202 @@
-🛡️ SURAKSHA
+# 🛡️ SURAKSHA  
+### Graph-Based Aadhaar Fraud Detection using R-GCN & Blockchain Audit
 
-Graph-Based Aadhaar Fraud Detection using R-GCN & Blockchain Audit
-SURAKSHA is an advanced fraud detection system designed to identify coordinated Aadhaar enrollment fraud by analyzing relationships between records, not just individual entries.
-Instead of checking one Aadhaar record at a time, SURAKSHA connects people, operators, locations, and time patterns into a graph, applies a Relational Graph Neural Network (R-GCN), and maintains a blockchain-based audit trail for tamper-proof logging.
+> **Fraud is detected as patterns, not isolated mistakes.**
 
-🚀 Key Features
-🔗 Knowledge Graph Construction from Aadhaar enrollment data
-🧠 R-GCN (Relational Graph Neural Network) for fraud detection
-🚨 Fraud Ring Identification (coordinated operator-level fraud)
-🔐 Blockchain Audit Trail for transparency & immutability
-📊 Interactive Frontend Dashboard (Flask-based)
-⚡ Detects fraud in seconds, even for ~1M records
+---
 
-🧠 Core Idea (Simple Words)
+## 📌 What is SURAKSHA?
+
+SURAKSHA is an **AI-powered fraud detection system** designed for Aadhaar enrollment data.
+
+Instead of checking records one by one, SURAKSHA **connects records together** and detects **coordinated fraud patterns** using:
+
+- Graphs
+- Graph Neural Networks (R-GCN)
+- Blockchain-based audit trail
+- Interactive frontend dashboard
+
+---
+
+## ❓ How is SURAKSHA Different?
 
 Traditional systems ask:
-
-“Is this single record valid?”
+> *Is this single record valid?*
 
 SURAKSHA asks:
+- Who enrolled whom?
+- Where was it done?
+- When was it done?
+- Are many records behaving together?
 
-Who enrolled whom?
+👉 **Fraud appears as a pattern, not as a single error.**
 
-Where was it done?
+---
 
-When was it done?
+## 🧠 Core Technologies
 
-Are many records behaving together?
+| Technology | Purpose |
+|----------|---------|
+| Python | Core implementation |
+| NetworkX | Graph construction |
+| PyTorch + R-GCN | Fraud pattern learning |
+| Blockchain | Tamper-proof audit logs |
+| Flask | Frontend dashboard |
 
-👉 Fraud is detected as patterns, not isolated mistakes.
+---
+
+## 📁 Project Structure
 
 SURAKSHA/
 │
-├── api_data_aadhar_enrolment/
-│   └── *.csv                     # Raw Aadhaar enrollment data (ignored in Git)
+├── api_data_aadhar_enrolment/ # Raw Aadhaar CSV files (ignored in Git)
+│ └── *.csv
 │
 ├── data/
-│   └── processed_real_aadhaar_data.csv
+│ └── processed_real_aadhaar_data.csv
 │
 ├── blockchain/
-│   ├── __init__.py               # Blockchain audit logic
-│   └── ledger.json               # Immutable audit ledger
+│ ├── init.py # Blockchain audit logic
+│ └── ledger.json # Immutable audit ledger
 │
 ├── models/
-│   ├── aadhaar_knowledge_graph.pkl
-│   ├── best_suraksha_model.pt
-│   ├── graph_info.pkl
-│   └── training_metrics.pkl
+│ ├── aadhaar_knowledge_graph.pkl
+│ ├── best_suraksha_model.pt
+│ ├── graph_info.pkl
+│ └── training_metrics.pkl
 │
 ├── outputs/
-│   ├── fraud_detection_report.txt
-│   ├── fraud_rings.csv
-│   └── performance_metrics.json
+│ ├── fraud_detection_report.txt
+│ ├── fraud_rings.csv
+│ └── performance_metrics.json
 │
-├── app.py                        # Frontend dashboard
-├── load_real_aadhaar_data.py     # STEP 1: Data cleaning
-├── code2_graph_construction.py   # STEP 2: Knowledge graph
-├── code3_rgcn_training.py        # STEP 3: Model training
-├── code4_fraud_detection.py      # STEP 4: Fraud detection
+├── load_real_aadhaar_data.py # STEP 1: Data cleaning
+├── code2_graph_construction.py # STEP 2: Graph construction
+├── code3_rgcn_training.py # STEP 3: Model training
+├── code4_fraud_detection.py # STEP 4: Fraud detection
 │
+├── app.py # Frontend dashboard
 ├── .gitignore
 └── README.md
 
-⚙️ System Requirements
+yaml
+Copy code
 
-Python 3.9 – 3.11
+---
 
-OS: Windows / Linux / macOS
+## ⚙️ System Requirements
 
-RAM: 8 GB minimum (16 GB recommended)
+Python : 3.9 – 3.11
+RAM : 8 GB minimum
+OS : Windows / Linux / macOS
 
-📦 Required Python Libraries
+yaml
+Copy code
 
-Install once using:
+---
 
-pip install pandas numpy networkx torch torch-geometric flask
+## 📦 Installation (One-Time Setup)
 
+### 1️⃣ Create Virtual Environment (Recommended)
 
-⚠️ GPU is optional – CPU works fine (training ~3 minutes)
+```bash
+python -m venv venv
+Activate:
 
-▶️ How to Run the Project (STEP BY STEP)
-🔹 STEP 1: Data Cleaning & Preprocessing
+bash
+Copy code
+venv\Scripts\activate     # Windows
+2️⃣ Install Dependencies
+bash
+Copy code
+pip install torch torch-geometric networkx pandas flask numpy
+GPU is optional. CPU works fine.
+**
+🚀 How to Run SURAKSHA (Step-by-Step)**
+🟦 STEP 1: Data Cleaning
+Input: Raw Aadhaar CSV files
+Output: Cleaned dataset
 
-This converts raw Aadhaar data into clean structured data.
-
+bash
+Copy code
 python load_real_aadhaar_data.py
+##✅ Output:
 
-
-Output generated:
-
+bash
+Copy code
 data/processed_real_aadhaar_data.csv
+🟦 STEP 2: Knowledge Graph Construction
+Converts Aadhaar records into a relationship graph.
 
-🔹 STEP 2: Knowledge Graph Construction
-
-This converts Aadhaar data into a graph.
-
+bash
+Copy code
 python code2_graph_construction.py
+Graph Nodes:
 
+Person (Enrollment)
 
-What happens here:
+Operator
 
-Nodes: Person, Operator, Location
+Center
 
-Edges: enrolled_by, located_at, temporal_proximity
+Graph Relations:
 
-Output generated:
+enrolled_by
 
+located_at
+
+temporal_proximity
+
+shared_biometric
+
+✅ Outputs:
+
+bash
+Copy code
 models/aadhaar_knowledge_graph.pkl
 models/graph_info.pkl
+🟦 STEP 3: R-GCN Model Training
+Learns fraud behavior from graph structure.
 
-🔹 STEP 3: R-GCN Model Training
-
-This trains the Graph Neural Network.
-
+bash
+Copy code
 python code3_rgcn_training.py
-
-
-Training result:
+✅ Results:
 
 Accuracy ≈ 86.4%
 
-Time ≈ 3 minutes
+Training Time ≈ 3 minutes
 
-Output generated:
+Outputs:
 
+bash
+Copy code
 models/best_suraksha_model.pt
 models/training_metrics.pkl
+🟦 STEP 4: Fraud Detection (MAIN STEP)
+Runs inference on the full graph and detects fraud rings.
 
-🔹 STEP 4: Fraud Detection (MAIN STEP)
-
-This runs inference and detects fraud rings.
-
+bash
+Copy code
 python code4_fraud_detection.py
+Fraud Ring Logic:
 
+If an operator has many suspicious enrollments
 
-What it does:
+Same location / time / biometric
 
-Runs model on full graph
+→ Operator is flagged as fraud ring leader
 
-Flags high-risk nodes
+✅ Outputs:
 
-Groups suspicious operators
-
-Detects fraud rings
-
-Logs events to blockchain
-
-Output generated:
-
+bash
+Copy code
 outputs/fraud_detection_report.txt
 outputs/fraud_rings.csv
 outputs/performance_metrics.json
 blockchain/ledger.json
-
-🔹 STEP 5: Run Frontend Dashboard (Demo)
-python app.py
-
-
-Open browser:
-
-http://localhost:5000
-
-
-You can see:
-
-Fraud rings
-
-Accuracy & metrics
-
-Confidence scores
-
-Downloadable reports
-
-✅ No need to re-run model for demo
-
-🔐 Blockchain Audit (What It Stores)
-
-The blockchain logs:
+🔐 Blockchain Audit Trail
+Every action is logged immutably:
 
 Data loading
 
@@ -188,39 +208,25 @@ Fraud detection
 
 Report generation
 
-📁 Stored in:
+👉 If anyone changes past data, hash verification fails.
 
-blockchain/ledger.json
+🖥️ Frontend Dashboard (Demo)
+No retraining needed.
 
+bash
+Copy code
+python app.py
+Open in browser:
 
-👉 Any attempt to modify past results breaks the hash chain.
+arduino
+Copy code
+http://localhost:5000
+Dashboard Features:
+Fraud rings
 
-🧪 Example Fraud Ring
-Operator ID: 1761
-Flagged Enrollments: 1488
-Location: Rajasthan / Churu
-Pattern:
-- Same operator
-- Same district
-- Same time window
-→ HIGH RISK FRAUD RING
+Operator confidence scores
 
-🌍 Real-World Impact
+Accuracy & detection time
 
-🚫 Prevents millions of fake Aadhaar IDs
+Downloadable reports
 
-💰 Stops ₹1400+ crore subsidy fraud
-
-⚡ Detects fraud in seconds
-
-📉 80% reduction in manual audit
-
-🏁 One-Line Summary (For Judges)
-
-“SURAKSHA transforms Aadhaar fraud detection from record-level checks to network-level intelligence using Graph Neural Networks and Blockchain auditing.”
-
-👨‍💻 Author
-
-Kushal Nayak
-Final Year / Hackathon Project
-📌 India
