@@ -99,14 +99,11 @@ Copy code
 
 ### 1️⃣ Create Virtual Environment (Recommended)
 
-```bash
 python -m venv venv
 Activate the virtual environment:
 
-bash
 Copy code
 venv\Scripts\activate
 
-**
-########2️⃣ Install Dependencies**
+
 
