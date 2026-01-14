@@ -101,46 +101,44 @@ Copy code
 
 ```bash
 python -m venv venv
-Activate:
+Activate the virtual environment:
 
 bash
 Copy code
-venv\Scripts\activate     # Windows
+venv\Scripts\activate
 2️⃣ Install Dependencies
 bash
 Copy code
 pip install torch torch-geometric networkx pandas flask numpy
-GPU is optional. CPU works fine.
-**
-🚀 How to Run SURAKSHA (Step-by-Step)**
+💡 GPU is optional. CPU works perfectly fine.
+
+🚀 How to Run SURAKSHA (Step-by-Step)
 🟦 STEP 1: Data Cleaning
 Input: Raw Aadhaar CSV files
-Output: Cleaned dataset
+Output: Cleaned Aadhaar dataset
 
 bash
 Copy code
 python load_real_aadhaar_data.py
-##✅ Output:
+✅ Output generated:
 
-bash
+text
 Copy code
 data/processed_real_aadhaar_data.csv
 🟦 STEP 2: Knowledge Graph Construction
-Converts Aadhaar records into a relationship graph.
+Converts Aadhaar records into a relationship-based graph.
 
 bash
 Copy code
 python code2_graph_construction.py
-Graph Nodes:
-
+Graph Nodes
 Person (Enrollment)
 
 Operator
 
-Center
+Enrollment Center
 
-Graph Relations:
-
+Graph Relationships
 enrolled_by
 
 located_at
@@ -149,84 +147,73 @@ temporal_proximity
 
 shared_biometric
 
-✅ Outputs:
+✅ Outputs generated:
 
-bash
+text
 Copy code
 models/aadhaar_knowledge_graph.pkl
 models/graph_info.pkl
 🟦 STEP 3: R-GCN Model Training
-Learns fraud behavior from graph structure.
+Learns fraud behavior from the graph structure using a Relational GCN.
 
 bash
 Copy code
 python code3_rgcn_training.py
-✅ Results:
-
+✅ Training Results:
 Accuracy ≈ 86.4%
-
 Training Time ≈ 3 minutes
 
-Outputs:
-
-bash
+✅ Outputs generated:
+text
 Copy code
 models/best_suraksha_model.pt
 models/training_metrics.pkl
+
 🟦 STEP 4: Fraud Detection (MAIN STEP)
 Runs inference on the full graph and detects fraud rings.
 
 bash
 Copy code
 python code4_fraud_detection.py
-Fraud Ring Logic:
-
+Fraud Ring Logic
 If an operator has many suspicious enrollments
+Same location, time window, or biometric pattern
+➜ Operator is flagged as a fraud ring leader
 
-Same location / time / biometric
+✅ Outputs generated:
 
-→ Operator is flagged as fraud ring leader
-
-✅ Outputs:
-
-bash
+text
 Copy code
 outputs/fraud_detection_report.txt
 outputs/fraud_rings.csv
 outputs/performance_metrics.json
 blockchain/ledger.json
+
 🔐 Blockchain Audit Trail
-Every action is logged immutably:
-
+Every major action is logged immutably on blockchain:
 Data loading
-
 Graph creation
-
 Model training
-
 Fraud detection
-
 Report generation
 
-👉 If anyone changes past data, hash verification fails.
+👉 If anyone tries to change past data, hash verification fails automatically.
 
 🖥️ Frontend Dashboard (Demo)
-No retraining needed.
+No retraining required. Uses saved outputs.
 
 bash
 Copy code
 python app.py
 Open in browser:
 
-arduino
+text
 Copy code
 http://localhost:5000
-Dashboard Features:
-Fraud rings
-
+Dashboard Features
+Fraud rings visualization
 Operator confidence scores
+Model accuracy & detection time
+Downloadable reports (CSV & TXT)
 
-Accuracy & detection time
-
-Downloadable reports
 
