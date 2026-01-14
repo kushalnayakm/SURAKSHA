@@ -1,0 +1,15 @@
+# Ignore large data
+api_data_aadhar_enrolment/
+C:\Users\KUSHAL NAYAK\OneDrive\Documents\suraksha project\api_data_aadhar_enrolment
+data/
+models/
+outputs/
+*.csv
+*.pkl
+
+# Blockchain runtime data
+blockchain/ledger.json
+
+# Python cache
+__pycache__/
+*.pyc
