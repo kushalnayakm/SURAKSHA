@@ -93,154 +93,93 @@ Copy code
 
 ---
 
-📦 Installation (One-Time Setup)
-1️⃣ Create Virtual Environment (Recommended)
-python -m venv venv
-
-
-Activate the virtual environment (Windows):
-
-venv\Scripts\activate
-
-2️⃣ Install Dependencies
-pip install torch torch-geometric networkx pandas flask numpy
-
-
-💡 GPU is optional. CPU works perfectly fine.
-
 🚀 How to Run SURAKSHA (Step-by-Step)
 🟦 STEP 1: Data Cleaning
 
 Purpose:
 Clean raw Aadhaar enrollment records.
-
+```text
 Command:
-
 python load_real_aadhaar_data.py
-
-
 Output:
-
 data/processed_real_aadhaar_data.csv
 
 🟦 STEP 2: Knowledge Graph Construction
-
 Purpose:
 Convert Aadhaar records into a relationship graph.
-
+```text
 Command:
-
 python code2_graph_construction.py
-
-
 Graph Nodes:
-
 Person (Enrollment)
-
 Operator
-
 Enrollment Center
-
 Location
-
 Graph Relationships:
-
 enrolled_by
-
 located_at
-
 temporal_proximity
-
 shared_biometric
 
 Outputs:
-
 models/aadhaar_knowledge_graph.pkl
 models/graph_info.pkl
 
 🟦 STEP 3: R-GCN Model Training
-
 Purpose:
 Train a Relational Graph Convolutional Network to learn fraud patterns.
-
+```text
 Command:
-
 python code3_rgcn_training.py
-
-
 Training Results:
-
 Accuracy ≈ 86.4%
-
 Training time ≈ 3 minutes
-
 Outputs:
-
 models/best_suraksha_model.pt
 models/training_metrics.pkl
 
 🟦 STEP 4: Fraud Detection (MAIN STEP)
-
 Purpose:
 Run inference on the full graph and detect fraud rings.
-
+```text
 Command:
-
 python code4_fraud_detection.py
-
-
 Fraud Ring Logic:
-
 Many suspicious enrollments
-
 Same operator
-
 Same time / location / biometric
-
 ⇒ Operator flagged as fraud ring leader
 
 Outputs:
-
 outputs/fraud_detection_report.txt
 outputs/fraud_rings.csv
 outputs/performance_metrics.json
 blockchain/ledger.json
 
 🔐 Blockchain Audit Trail
-
 Every critical step is immutably logged:
-
 Data loading
-
 Graph creation
-
 Model training
-
 Fraud detection
-
 Report generation
 
 📌 If anyone tries to modify past records,
 hash verification fails immediately.
 
 🖥️ Frontend Dashboard (Demo)
-
 No retraining needed.
-
 Run Dashboard
+```text
 python app.py
-
 Open in Browser
+```text
 http://localhost:5000
 
-Dashboard Shows
-
+Dashboard Shows:
 Fraud rings
-
 Operator confidence scores
-
 Accuracy & detection time
-
 Downloadable reports
 
 🧠 One-Line Summary (For Judges)
