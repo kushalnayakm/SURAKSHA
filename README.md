@@ -109,7 +109,8 @@ Convert Aadhaar records into a relationship graph.
 ```text
 Command:
 python code2_graph_construction.py
-Graph Nodes:
+
+**Graph Nodes:**
 Person (Enrollment)
 Operator
 Enrollment Center
@@ -130,7 +131,8 @@ Train a Relational Graph Convolutional Network to learn fraud patterns.
 ```text
 Command:
 python code3_rgcn_training.py
-Training Results:
+
+**Training Results:**
 Accuracy ≈ 86.4%
 Training time ≈ 3 minutes
 Outputs:
@@ -143,7 +145,8 @@ Run inference on the full graph and detect fraud rings.
 ```text
 Command:
 python code4_fraud_detection.py
-Fraud Ring Logic:
+
+**Fraud Ring Logic:**
 Many suspicious enrollments
 Same operator
 Same time / location / biometric
@@ -181,7 +184,7 @@ Operator confidence scores
 Accuracy & detection time
 Downloadable reports
 
-🧠 One-Line Summary (For Judges)
+🧠 One-Line Summary 
 
 “SURAKSHA transforms Aadhaar fraud detection from record-level checks to network-level intelligence using graph neural networks and blockchain auditing.”
 
